@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function poldetails() {
+            var xml=new XMLHttpRequest();
+            xml.onreadystatechange=function () {
+            if(xml.readyState==4 && xml.status==200){
+               // var response=xml.responseText.trim();
+                ans=response
+               // alert(response[0]);
+                var response=JSON.parse(xml.response);
+                if(response.length==0){
+                   document.getElementById('divorders').innerHTML="<h4>No any Employ present with this name</h4>";
+                }
+                else{
+                     console.log(response);
+                var ans="";
+                ans+="<table class=\"table table-striped\">\n" +
+                    "                <thead>\n" +
+                    "                  <tr>\n" +
+                    "                        <th>CO2 per capita</th>\n" +
+                    "                    <th>1997</th>\n" +
+                    "                    <th>1998</th>\n" +
+                    "                      <th>1999</th>\n" +
+                    "                      <th>2000</th>\n" +
+                    "                      <th>2001</th>\n" +
+                    "                      <th>2002</th>\n" +
+                    "                      <th>2003</th>\n" +
+                    "                      <th>2004</th>\n" +
+                    "                      <th>2005</th>\n" +
+                    "                      <th>2006</th>\n" +
+                    "                      <th>2007</th>\n" +
+                    "                      <th>2008</th>\n" +
+                    "                      <th>2009</th>\n" +
+                    "                      <th>2010</th>\n" +
+                    "                  </tr>\n" +
+                    "                </thead>";
+
+
+                    for (var i = 1; i < response.length; i++) {
+                        console.log(response[i][0]);ans += "<tr><td>" + response[i][0] + "</td><td>" + response[i][1] + "</td><td>" + response[i][2] + "</td><td>" + response[i][3] + "</td><td>" + response[i][4] + "</td><td>" + response[i][5] + "</td><td>" + response[i][6] + "</td><td>" + response[i][7] + "</td><td>" + response[i][8] + "</td><td>" + response[i][9] + "</td><td>" + response[i][10] + "</td><td>" + response[i][11] + "</td><td>" + response[i][12] + "</td><td>" + response[i][13] + "</td><td>" + response[i][14] + "</td></tr>";
+                                }
+                    ans += "<tr><td>" +"--"+ "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td></tr>";
+                    ans += "</table>";
+                    document.getElementById('empdetail').innerHTML=ans;
+                }
+            }
+        };
+        xml.open("GET", "index", true);
+        xml.send();
+        }
+        ////////////////////////////
+    function minimum() {
+            var xml=new XMLHttpRequest();
+            xml.onreadystatechange=function () {
+            if(xml.readyState==4 && xml.status==200){
+                var response=JSON.parse(xml.response);
+                if(response.length==0){
+                   document.getElementById('divorders').innerHTML="<h4>No any Country present with Maximum</h4>";
+                }
+                else{
+                     console.log(response);
+                var ans="";
+                ans+="<table class=\"table table-striped\">\n" +
+                    "                <thead>\n" +
+                    "                  <tr>\n" +
+                    "                    <th>Country</th>\n" +
+                    "                    <th>Year</th>\n" +
+                    "                    <th>CO2 per capita</th>\n" +
+                    "                  </tr>\n" +
+                    "                </thead>";
+
+
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(response[i][0]);
+                        ans += "<tr><td>" + response[i][0] + "</td><td>" + response[i][1] + "</td><td>" + response[i][2] + "</td></tr>";
+                    }
+                                        ans += "<tr><td>" +"--"+ "</td><td>" + "--" + "</td><td>" + "--" + "</td></tr>";
+                    ans += "</table>";
+                document.getElementById('minimum1').innerHTML=ans;
+                }
+            }
+        };
+        xml.open("GET", "minimum", true);
+        xml.send();
+        }
+        ///////////////////////////////////////////////////////////////
+        function maximum() {
+            var xml=new XMLHttpRequest();
+            xml.onreadystatechange=function () {
+            if(xml.readyState==4 && xml.status==200){
+                var response=JSON.parse(xml.response);
+                if(response.length==0){
+                   document.getElementById('divorders').innerHTML="<h4>No any Country present with Maximum</h4>";
+                }
+                else{
+                     console.log(response);
+                var ans="";
+                ans+="<table class=\"table table-striped\">\n" +
+                    "                <thead>\n" +
+                    "                  <tr>\n" +
+                    "                    <th>Country</th>\n" +
+                    "                    <th>Year</th>\n" +
+                    "                    <th>CO2 per capita</th>\n" +
+                    "                  </tr>\n" +
+                    "                </thead>";
+
+
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(response[i][0]);
+                        ans += "<tr><td>" + response[i][0] + "</td><td>" + response[i][1] + "</td><td>" + response[i][2] + "</td></tr>";
+                    }
+                                        ans += "<tr><td>" +"--"+ "</td><td>" + "--" + "</td><td>" + "--" + "</td></tr>";
+                    ans += "</table>";
+                document.getElementById('maximum').innerHTML=ans;
+                }
+            }
+        };
+        xml.open("GET", "maximum", true);
+        xml.send();
+        }
+
+        ///////////////////////////////////////////////////////////////
+
+        /////////////////////////////////////////////////////
+
+        function filtercountries(value){
+             var xml=new XMLHttpRequest();
+        xml.onreadystatechange=function () {
+            if(xml.readyState==4 && xml.status==200){
+                  var response=JSON.parse(xml.response);
+                if(response.length==0){
+                   document.getElementById('divorders').innerHTML="<h4>No any Employ present with this name</h4>";
+                }
+                else{
+                     console.log(response);
+                var ans="";
+                ans+="<table class=\"table table-striped\">\n" +
+                    "                <thead>\n" +
+                    "                  <tr>\n" +
+                    "                    <th>CO2 per capita</th>\n" +
+                    "                    <th>1997</th>\n" +
+                    "                    <th>1998</th>\n" +
+                    "                      <th>1999</th>\n" +
+                    "                      <th>2000</th>\n" +
+                    "                      <th>2001</th>\n" +
+                    "                      <th>2002</th>\n" +
+                    "                      <th>2003</th>\n" +
+                    "                      <th>2004</th>\n" +
+                    "                      <th>2005</th>\n" +
+                    "                      <th>2006</th>\n" +
+                    "                      <th>2007</th>\n" +
+                    "                      <th>2008</th>\n" +
+                    "                      <th>2009</th>\n" +
+                    "                      <th>2010</th>\n" +
+                    "                  </tr>\n" +
+                    "                </thead>";
+
+                    if (value!=null){
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(response[i][0]);
+
+                        ans += "<tr><td>" + response[i][0] + "</td><td>" + response[i][1] + "</td><td>" + response[i][2] + "</td><td>" + response[i][3] + "</td><td>" + response[i][4] + "</td><td>" + response[i][5] + "</td><td>" + response[i][6] + "</td><td>" + response[i][7] + "</td><td>" + response[i][8] + "</td><td>" + response[i][9] + "</td><td>" + response[i][10] + "</td><td>" + response[i][11] + "</td><td>" + response[i][12] + "</td><td>" + response[i][13] + "</td><td>" + response[i][14] + "</td></tr>";
+
+                    }}
+                    else{
+                        ans += "<tr><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--"+ "</td><td>" + "--" + "</td><td>" +"--" + "</td><td>" +"--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--"+ "</td><td>" + "--"+ "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td><td>" + "--" + "</td></tr>";
+
+
+                    }
+
+
+                    ans += "</table>";
+
+
+                document.getElementById('detail').innerHTML=ans;
+                }
+
+            }
+        };
+        xml.open('GET','viewfiltercountry?value='+value,true);
+        xml.send();
+        }
+        /////////////////////////////////////////////////////////////////////////
+        function graph(){
+            alert("hello")
+            var namegraph=document.getElementById('name').value;
+             var xml=new XMLHttpRequest();
+        xml.onreadystatechange=function () {
+            if(xml.readyState==4 && xml.status==200){
+                  var response=JSON.parse(xml.response);
+                if(response.length==0){
+                   document.getElementById('divorders').innerHTML="<h4>No any country present with this name</h4>";
+                }
+                else{
+                     console.log(response);
+                    var data2=response.data
+                   var ans=""
+                    ans+="<img src=\"data:image/png;base64,"
+                    ans +=data2
+                ans +="\" alt=\"\" height=\"350\" ,width=\"2000\">"
+                document.getElementById('graph').innerHTML=ans;
+                }
+
+            }
+        };
+        alert(namegraph)
+         xml.open('GET','graph?namegraph='+namegraph,true);
+        xml.send(namegraph);
+        }
+
+    </script>
+</head>
+<body>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<div class="container-fluid">
+  <h1>  <p class="bg-danger text-white">Country Emission Details</p></h1>
+    <div class="container-fluid">
+  <div class="container-fluid">
+            <div class="form-group">
+                Enter Country Name
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" onkeyup="filtercountries(this.value)">
+            </div>
+            <div id="detail" style="margin: 10px;">
+
+        </div>
+              </div>
+            </div>
+            </div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<div class="container-fluid">
+    <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-6 col-lg-4 bg-success">
+          <h1>Minimum</h1>
+          <input type="button"  value="Get Details" onclick="minimum()" class="btn btn-danger">
+
+           <div id="minimum1" style="margin: 10px;"></div>
+
+      </div>
+      <div class="col-sm-9 col-md-6 col-lg-8 bg-warning">
+            <h1>Maximum</h1>
+          <input type="button"  value="Get Details" onclick="maximum()" class="btn btn-danger">
+      <div id="maximum" style="margin: 10px;">
+
+        </div>
+               </div>
+                </div>
+              </div>
+            </div>
+            </div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<div class="container-fluid">
+    <div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-6 col-lg-4 bg-warning">
+            <h1>Polution Graph</h1>
+            <div class="form-group">
+                Enter country Name
+                <input type="text" placeholder="enter name" title="enter name" id="name" class="form-control">
+            </div>
+            <input type="button" value="FETCH" onclick="graph()" class="btn btn-danger">
+
+      </div>
+      <div class="col-sm-9 col-md-6 col-lg-8 bg-success">
+            <div id="graph">
+
+        </div>
+               </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<div class="p-3 mb-2 bg-info text-white" >
+<div class="text-center">
+     <input type="button"  value="FETCH All" onclick="poldetails()" class="btn btn-danger"></div>
+ </div>
+<div id="empdetail" style="margin: 10px;"></div>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////-->
+</body>
+</html>
